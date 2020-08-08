@@ -104,7 +104,7 @@ def test(lado_inicial, states):
         elif action == "LEFT":
             states[0] = 'A'
 
-        time.sleep(3)
+        time.sleep(1)
 
 
 def sucesores(n):
@@ -132,12 +132,12 @@ def anchura(nodo_inicio, nodo_fin):
     lista = [nodo_inicio]
     while lista:
         nodo_actual = lista.pop(0)
-        print(nodo_actual)
+        print( "ESTADO "+str(nodo_actual))
         if nodo_actual == nodo_fin:
             return print("SOLUCIÓN")
         temp = sucesores(nodo_actual)
         # temp.reverse()
-        print(temp)
+        #print(temp)
         if temp:
             lista.extend(temp)
             # print(lista)
@@ -148,13 +148,13 @@ def profundidad(nodo_inicio, nodo_fin):
     lista = [nodo_inicio]
     while lista:
         nodo_actual = lista.pop(0)
-        print(nodo_actual)
+        print("ESTADO "+str(nodo_actual))
         if nodo_actual == nodo_fin:
             # print(len(lista))
             return print("SOLUCIÓN")
         temp = sucesores(nodo_actual)
         temp.reverse()
-        print(temp)
+        #print(temp)
         if temp:
             temp.extend(lista)
             lista = temp
@@ -191,7 +191,7 @@ if __name__ == "__main__":
         print("Ingrese una opcion:")
         print("1. Recorrer todo")
         print("2. Busqueda por anchura")
-        print("3. Busqueda por profundida")
+        print("3. Busqueda por profundidad")
         print("4. Salir")
         seleccion = int(input())
         if(seleccion==1):
