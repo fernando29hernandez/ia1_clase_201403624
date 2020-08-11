@@ -1,5 +1,13 @@
 import time
+import random
+
 visited = [False, False, False, False, False, False, False, False, False]
+
+def ensuciar(states):
+    if states[1] == 'CLEAN':
+        states[1] = ('CLEAN', 'DIRTY') [random.randint(0, 1) == 1] 
+    if states[2] == 'CLEAN':
+        states[2] = ('CLEAN', 'DIRTY') [random.randint(0, 1) == 1] 
 
 def definir_estado(estado):
     if(estado == 1):
@@ -80,16 +88,6 @@ def test(lado_inicial, states):
 
         action = reflex_agent(location, state)
         imprimir_estado(states[1], states[2], states[0])
-        if contador == 0 and states[2] == 'CLEAN'and states[1] == 'CLEAN':
-            if(lado_inicial == 'A'):
-                states[1] = 'DIRTY'
-            else:
-                states[2] = 'DIRTY'
-            contador = contador + 1
-        if contador == 1 and states[2] == 'CLEAN'and states[1] == 'CLEAN':
-            states[1] = 'DIRTY'
-            states[2] = 'DIRTY'
-            contador = contador + 1
         if all_visited():
             bandera_limpio = 0
 
@@ -103,7 +101,7 @@ def test(lado_inicial, states):
             states[0] = 'B'
         elif action == "LEFT":
             states[0] = 'A'
-
+        ensuciar(states)
         time.sleep(1)
 
 
@@ -163,6 +161,8 @@ def profundidad(nodo_inicio, nodo_fin):
 
 def recorrerTodo():
     print("Ingrese estado inicial del 1 al 8:")
+    global visited
+    visited = [False, False, False, False, False, False, False, False, False]
     estado_inicial = int(input())
     arreglo_inicial = definir_estado(estado_inicial)
     lado_inicio = arreglo_inicial[0]
